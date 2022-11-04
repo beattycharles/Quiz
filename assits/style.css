@@ -1,0 +1,16 @@
+html {
+  background-image: url(./Grail.jpg);
+}
+
+.Begin {
+  margin-top: 400px;
+  text-align: center;
+  height: 150px;
+  font-size: xx-large;
+  background-color: black;
+  color: cornflowerblue;
+}
+
+.Start {
+  font-size: 40px;
+}
