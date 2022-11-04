@@ -4,7 +4,7 @@ var hideBar = document.querySelector(".Begin");
 var secondsLeft = 10;
 var Canvas = document.querySelector(".Canvas");
 
-function
+document.getElementById("Start").addEventListener("click", setTime);
 
 function setTime() {
   // Sets interval in variable
@@ -39,4 +39,3 @@ function sendMessage() {
   };
   Canvas.appendChild(imgEl);
 }
-

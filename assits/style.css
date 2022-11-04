@@ -11,6 +11,18 @@ html {
   color: cornflowerblue;
 }
 
-.Start {
+#Start {
   font-size: 40px;
+}
+
+.Canvas {
+  display: flex;
+  justify-content: space-around;
+}
+
+#info {
+  display: flex;
+  font-size: xx-large;
+  font-weight: 500;
+  color: darkgreen;
 }
