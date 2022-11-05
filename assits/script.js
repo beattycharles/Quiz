@@ -39,8 +39,12 @@ document.getElementById("Start").addEventListener("click", setTime);
 
 function setTime() {
   hideText.textContent = " ";
-  document.querySelector(".Begin").remove();
-  myQuestions.appendChild(showTime);
+  // document.querySelector(".Begin").remove();
+  hideBar.textContent = " ";
+  for (let i = 0; i < myQuestions.length; i++) {
+    // text += myQuestions[i];
+  }
+
   // Sets interval in variable
   var timerInterval = setInterval(function () {
     secondsLeft--;
