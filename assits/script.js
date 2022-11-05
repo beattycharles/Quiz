@@ -3,10 +3,44 @@ var hideText = document.querySelector("#info");
 var hideBar = document.querySelector(".Begin");
 var secondsLeft = 10;
 var Canvas = document.querySelector(".Canvas");
+var Qtime = document.querySelector(".Questions");
+
+var myQuestions = [
+  {
+    question: "What is your name?",
+    answers: {
+      a: "Tim",
+      b: "Author King of the Britians",
+      c: "Knights who say NI.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "What is my favorit Color?",
+    answers: {
+      a: "Red",
+      b: "Green",
+      c: "Blue",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "what is the airspeed velocity of an unladen swallow?",
+    answers: {
+      a: "24 mph",
+      b: "What?",
+      C: "African or European?",
+    },
+    correctAnswer: "c",
+  },
+];
 
 document.getElementById("Start").addEventListener("click", setTime);
 
 function setTime() {
+  hideText.textContent = " ";
+  document.querySelector(".Begin").remove();
+  myQuestions.appendChild(showTime);
   // Sets interval in variable
   var timerInterval = setInterval(function () {
     secondsLeft--;
@@ -23,8 +57,6 @@ function setTime() {
 
 function sendMessage() {
   timeEl.textContent = " ";
-  hideText.textContent = " ";
-  document.querySelector(".Begin").remove();
   var imgEl = document.createElement("img");
   imgEl.setAttribute("src", "./assits/monty-python-holy-grail.gif");
   imgEl.onload = function () {
