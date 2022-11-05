@@ -5,7 +5,6 @@ html {
 .Begin {
   margin-top: 200px;
   text-align: center;
-  height: 150px;
   font-size: xx-large;
   background-color: black;
   color: cornflowerblue;
@@ -25,4 +24,29 @@ html {
   font-size: xx-large;
   font-weight: 500;
   color: darkgreen;
+}
+#question-page h1 {
+  font-size: 30px;
+  text-align: center;
+}
+#answer-choices {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+.answer-choice {
+  margin: 10px;
+  background-color: cornflowerblue;
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+  /* padding: 20px; */
+  font-weight: bolder;
+  font: white;
+}
+.answer-choice:hover {
+  transform: translate(0, -2px);
+  box-shadow: 0px 5px 5px rgb(5, 97, 97);
+  background-color: #66f2fc;
 }

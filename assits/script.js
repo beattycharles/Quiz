@@ -1,47 +1,54 @@
 var timeEl = document.querySelector(".time");
 var hideText = document.querySelector("#info");
 var hideBar = document.querySelector(".Begin");
-var secondsLeft = 10;
+var secondsLeft = 20;
+var qIndex = 0;
+var questionPageEl = document.querySelector("#question-page");
+var questionHeading = questionPageEl.querySelector("#question");
+var answersEl = questionPageEl.querySelector("#answer-choices");
 var Canvas = document.querySelector(".Canvas");
 var Qtime = document.querySelector(".Questions");
-
 var myQuestions = [
   {
     question: "What is your name?",
-    answers: {
-      a: "Tim",
-      b: "Author King of the Britians",
-      c: "Knights who say NI.",
+    answersChoices: [
+    "Tim",
+    "Author King of the Britians",
+    "Knights who say NI."],
+    answerCorrect: "Author King of the Britians"
     },
-    correctAnswer: "b",
-  },
-  {
-    question: "What is my favorit Color?",
-    answers: {
-      a: "Red",
-      b: "Green",
-      c: "Blue",
-    },
-    correctAnswer: "c",
-  },
-  {
-    question: "what is the airspeed velocity of an unladen swallow?",
-    answers: {
-      a: "24 mph",
-      b: "What?",
-      C: "African or European?",
-    },
-    correctAnswer: "c",
-  },
+    {
+      question: "What is my favorite Color?",
+      answersChoices: [
+         "Red",
+         "Blue",
+         "Green",],
+         answerCorrect: "Blue"
+      },
+      {
+        question: "What is the air speed velocity of an unladen swallow?",
+        answersChoices: [
+           "24 mph",
+           "32kph",
+           "African or European?",],
+           answerCorrect: "African or European?"
+        },
+        {
+          question: "What holy relic does Brother Maynard carry with him?",
+          answersChoices: [
+             "Holy Hand Grenade of Antioch",
+             "Book of Armaments",
+             "The Jaw of St Anthony",],
+             answerCorrect: "Holy Hand Grenade of Antioch"},
 ];
 
 document.getElementById("Start").addEventListener("click", setTime);
 
 function setTime() {
   hideText.textContent = " ";
-  document.querySelector(".Begin").remove();
-  myQuestions.appendChild(showTime);
-  // Sets interval in variable
+  hideBar.textContent = "";
+  Canvas.remove();
+  showQuestion();
   var timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft + "seconds left";
@@ -49,13 +56,50 @@ function setTime() {
     if (secondsLeft === 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
-      // Calls function to create and append message
       sendMessage();
     }
   }, 1000);
-}
+  
+};
 
-function sendMessage() {
+var showQuestion = function(){
+  questionHeading.textContent = myQuestions[qIndex].question;
+
+for (var i = 0; i < 4; i++) {
+  var answerChoice = document.createElement("p");
+  answerChoice.textContent = myQuestions[qIndex].answersChoices[i];
+  answerChoice.className = "answer-choice";
+  answersEl.appendChild(answerChoice);
+}
+// Event listener for clicking on answer choices
+answersEl.addEventListener("click", checkAnswer);
+};
+
+var checkAnswer = function (event) {
+
+  // Check for correct answer
+  var chosenAnswer = event.target;
+  if (chosenAnswer.textContent === myQuestions[qIndex].answerCorrect) 
+  { score = score + 5;
+  }
+  else {
+      secondsLeft = secondsLeft - 10;
+  }
+  qIndex++
+
+  if (qIndex < myQuestions.length) {
+    while (answersEl.firstChild) {
+        questionHeading.textContent = "";
+        answersEl.removeChild(answersEl.firstChild);
+  };
+
+  showQuestion();
+} else {
+    sendMessage();
+    return;
+};
+};
+var sendMessage = function() {
   timeEl.textContent = " ";
   var imgEl = document.createElement("img");
   imgEl.setAttribute("src", "./assits/monty-python-holy-grail.gif");
@@ -70,4 +114,5 @@ function sendMessage() {
     this.style.top = (vpHeight - imageHeight) / 2 + window.pageYOffset + "px";
   };
   Canvas.appendChild(imgEl);
-}
+};
+
