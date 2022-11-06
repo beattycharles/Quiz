@@ -134,8 +134,8 @@ var submitScore = function (event) {
   var initialsSave = gameOverEl.querySelector("#initials").value;
 
   scoreboard = JSON.parse(localStorage.getItem("score")) || [];
-  // savedScoresArr.push(scoreboard);
-  // console.log(savedScoresArr);
+  savedScoresArr.push(scoreboard);
+  console.log(savedScoresArr);
 
   // Save initial and score pair as an object and push to savedScoresArr
   var scoreObj = {
