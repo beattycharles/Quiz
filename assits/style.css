@@ -25,16 +25,19 @@ html {
   font-weight: 500;
   color: darkgreen;
 }
+
 #question-page h1 {
   font-size: 30px;
   text-align: center;
 }
+
 #answer-choices {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin: auto;
 }
+
 .answer-choice {
   margin: 10px;
   background-color: cornflowerblue;
@@ -45,8 +48,39 @@ html {
   font-weight: bolder;
   font: white;
 }
+
 .answer-choice:hover {
   transform: translate(0, -2px);
   box-shadow: 0px 5px 5px rgb(5, 97, 97);
   background-color: #66f2fc;
+}
+
+#enter-score {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  font-size: 20px;
+}
+
+#enter-score p {
+  margin: 20px auto;
+}
+
+#enter-score input {
+  margin: 15px;
+  height: 30px;
+  padding: 2px 5px;
+}
+
+#scoreboard {
+  display: flex;
+  flex-direction: column;
+}
+
+#score-table td{
+  padding: 5px 30px;
+}
+
+img{
+  left: 450px;
 }

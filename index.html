@@ -26,6 +26,34 @@
           <li id="choice-c"></li>
           <li id="choice-d"></li> -->
       </div>
+    </section>
+    <section id="game-over">
+      <h1>Game Over!</h1>
+      <form id="enter-score">
+          <p id="your-score"></p>
+          <label for="initials">Enter Initials</label>
+          <input type="text" name="initials" id="initials">
+          <button id="submit-score">Submit!</button>
+      </form>
+  </section>
+  <section id="scoreboard">
+      <table id="score-table">
+          <h1>Your Previous Scores</h1>
+          <thead>
+              <tr>
+                  <th>
+                      Score
+                  </th>
+                  <th>
+                      Initials
+                  </th>
+              </tr>
+          </thead>
+          <tbody id="score-table-body">
+          </tbody>
+      </table>
+      <button id="try-again">Try Again!</button>
+  </section>
   </body>
   <script src="./assits/script.js"></script>
 </html>
@@ -33,11 +61,11 @@
 <!-- GIVEN I am taking a code quiz
 !WHEN I click the start button
 !THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score -->
+!WHEN I answer a question
+!THEN I am presented with another question
+!WHEN I answer a question incorrectly
+!THEN time is subtracted from the clock
+!WHEN all questions are answered or the timer reaches 0
+!THEN the game is over
+!WHEN the game is over
+!THEN I can save my initials and score -->
