@@ -27,40 +27,39 @@ var myQuestions = [
     {
       question: "What is my favorite Color?",
       answersChoices: [
-         "Red",
-         "Blue",
-         "Green",],
-         answerCorrect: "Blue"
+        "Red",
+        "Blue",
+        "Green",],
+        answerCorrect: "Blue"
       },
       {
         question: "What is the air speed velocity of an unladen swallow?",
         answersChoices: [
-           "24 mph",
-           "32kph",
-           "African or European?",],
-           answerCorrect: "African or European?"
+        "24 mph",
+        "32kph",
+        "African or European?",],
+        answerCorrect: "African or European?"
         },
         {
           question: "What holy relic does Brother Maynard carry with him?",
           answersChoices: [
-             "Holy Hand Grenade of Antioch",
-             "Book of Armaments",
-             "The Jaw of St Anthony",],
-             answerCorrect: "Holy Hand Grenade of Antioch"},
+          "Holy Hand Grenade of Antioch",
+          "Book of Armaments",
+          "The Jaw of St Anthony",],
+          answerCorrect: "Holy Hand Grenade of Antioch"},
 ];
 gameOverEl.style.display = "none";
 scoreboardPageEl.style.display = "none";
-document.getElementById("Start").addEventListener("click", setTime);
 
 function setTime() {
-  hideText.textContent = " ";
+  hideText.textContent = "";
   hideBar.textContent = "";
   Canvas.remove();
   showQuestion();
   var timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft + "seconds left";
-
+    
     if (secondsLeft <= 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
@@ -72,40 +71,40 @@ function setTime() {
 
 var showQuestion = function(){
   questionHeading.textContent = myQuestions[qIndex].question;
-
-for (var i = 0; i < 4; i++) {
-  var answerChoice = document.createElement("p");
-  answerChoice.textContent = myQuestions[qIndex].answersChoices[i];
-  answerChoice.className = "answer-choice";
-  answersEl.appendChild(answerChoice);
-}
-// Event listener for clicking on answer choices
-answersEl.addEventListener("click", checkAnswer);
+  
+  for (var i = 0; i < 4; i++) {
+    var answerChoice = document.createElement("p");
+    answerChoice.textContent = myQuestions[qIndex].answersChoices[i];
+    answerChoice.className = "answer-choice";
+    answersEl.appendChild(answerChoice);
+  }
+  // Event listener for clicking on answer choices
+  answersEl.addEventListener("click", checkAnswer);
 };
 
 var checkAnswer = function (event) {
-
+  
   // Check for correct answer
   var chosenAnswer = event.target;
   if (chosenAnswer.textContent === myQuestions[qIndex].answerCorrect) 
   { score = score + 5;
   }
   else {
-      secondsLeft = secondsLeft - 10;
+    secondsLeft = secondsLeft - 10;
   }
   qIndex++
-
+  
   if (qIndex < myQuestions.length) {
     while (answersEl.firstChild) {
-        questionHeading.textContent = "";
-        answersEl.removeChild(answersEl.firstChild);
-  };
-
-  showQuestion();
-} else {
+    questionHeading.textContent = "";
+    answersEl.removeChild(answersEl.firstChild);
+    };
+    
+    showQuestion();
+  } else {
     sendMessage();
     return;
-};
+  };
 };
 var sendMessage = function() {
   questionHeading.remove();
@@ -115,77 +114,70 @@ var sendMessage = function() {
   score = score + secondsLeft;
   var imgEl = document.createElement("img");
   imgEl.setAttribute("src", "./assits/monty-python-holy-grail.gif");
-  imgEl.onload = function () {
-    var imageWidth = this.offsetWidth,
-      imageHeight = this.offsetHeight,
-      vpWidth = document.documentElement.clientWidth,
-      vpHeight = document.documentElement.clientHeight;
-
+  imgEl.onload = function () {    
     this.style.position = "absolute";
-      };
+  };
   timeEl.appendChild(imgEl);
 };
 
 var gameOver = function () {
-
   score = score + timeLeft;
-
+  
   // Display current score
   var displayScoreEl = gameOverEl.querySelector("#your-score");
   displayScoreEl.textContent = "YOUR SCORE: " + score;
-
+  
   return score;
 };
 
 // Save score
 var submitScore = function (event) {
   event.preventDefault();
-
+  
   var initialsSave = gameOverEl.querySelector("#initials").value;
-
+  
   scoreboard = JSON.parse(localStorage.getItem("score")) || [];
   // savedScoresArr.push(scoreboard);
   // console.log(savedScoresArr);
-
+  
   // Save initial and score pair as an object and push to savedScoresArr
   var scoreObj = {
-      initial: initialsSave,
-      score: score
+    initial: initialsSave,
+    score: score
   };
   console.log(scoreObj);
   scoreboard.push(scoreObj);
-
+  
   // Stringify array for local storage
   localStorage.setItem("score", JSON.stringify(scoreboard));
-
+  
   gameOverEl.style.display = "none";
   scoreboardPageEl.style.display = "block";
-
+  
   loadScore();
 };
 
 // Retrieve score and display on scoreboard
 var loadScore = function () {
   if (!savedScoresArr) {
-      return false;
+    return false;
   }
-
+  
   var scoreTableBody = scoreboardPageEl.querySelector("#score-table-body");
   scoreboard = JSON.parse(localStorage.getItem("score")) || [];
-
+  
   //create table row per each saved score object
   for (var i = 0; i < scoreboard.length; i++) {
-      var scoreTableRow = document.createElement("tr");
-      scoreTableBody.appendChild(scoreTableRow);
-      var tableDataInitials = document.createElement("td");
-      var tableDataScore = document.createElement("td");
-      tableDataInitials.textContent = scoreboard[i].initial;
-      tableDataScore.textContent = scoreboard[i].score;
-      scoreTableRow.appendChild(tableDataScore);
-      scoreTableRow.appendChild(tableDataInitials);
+    var scoreTableRow = document.createElement("tr");
+    scoreTableBody.appendChild(scoreTableRow);
+    var tableDataInitials = document.createElement("td");
+    var tableDataScore = document.createElement("td");
+    tableDataInitials.textContent = scoreboard[i].initial;
+    tableDataScore.textContent = scoreboard[i].score;
+    scoreTableRow.appendChild(tableDataScore);
+    scoreTableRow.appendChild(tableDataInitials);
   }
 };
-
 
 // Restart game by refreshing page
 var restart = function () {
@@ -197,3 +189,4 @@ formEl.addEventListener("submit", submitScore);
 
 // Try quiz again
 btnTryAgain.addEventListener("click", restart);
+document.getElementById("Start").addEventListener("click", setTime);
