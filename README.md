@@ -16,7 +16,7 @@ A timed quiz of the movie Monty Python and the Holy Grail.
 Created to show working knowledge of  dom traveral in javascript.
 
 ## Screeshot
-![Screenshot](./assits/HolyG.PNG)
+![Screenshot](assits/HolyG.PNG)
 
 ## Access
 
