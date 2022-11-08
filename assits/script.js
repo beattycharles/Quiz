@@ -53,10 +53,9 @@ function setTime() {
   hideText.textContent = "";
   hideBar.textContent = "";
   // Canvas.remove();
-  showQuestion();
   var timerInterval = setInterval(function () {
-    secondsLeft--;
     timeEl.textContent = secondsLeft + "seconds left";
+    secondsLeft--;
 
     if (secondsLeft <= 0) {
       // Stops execution of action at set interval
@@ -64,12 +63,13 @@ function setTime() {
       sendMessage();
     }
   }, 1000);
+  showQuestion();
 }
 
 var showQuestion = function () {
   questionHeading.textContent = myQuestions[qIndex].question;
 
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < myQuestions.length; i++) {
     var answerChoice = document.createElement("p");
     answerChoice.textContent = myQuestions[qIndex].answersChoices[i];
     answerChoice.className = "answer-choice";
@@ -100,25 +100,23 @@ var checkAnswer = function (event) {
     sendMessage();
     return;
   }
-  clearInterval(timerInterval);
 };
 var sendMessage = function () {
   questionHeading.remove();
   questionPageEl.remove();
-  timeEl.textContent = " ";
-  gameOverEl.style.display = "block";
-  score = score + secondsLeft;
   var imgEl = document.createElement("img");
   imgEl.setAttribute("src", "./assits/monty-python-holy-grail.gif");
   imgEl.onload = function () {
     this.style.position = "absolute";
   };
+  timeEl.textContent = " ";
+  gameOverEl.style.display = "block";
+  score = score + secondsLeft;
   timeEl.appendChild(imgEl);
 };
 
 var gameOver = function () {
   score = score + timeLeft;
-  clearInterval(timerInterval);
 
   // Display current score
   var displayScoreEl = gameOverEl.querySelector("#your-score");
